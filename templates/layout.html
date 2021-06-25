@@ -1,0 +1,117 @@
+<!doctype html>
+{% load static %}
+<html class="no-js " lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>{% block title %}  {% endblock %} | WTIOT </title>
+<!-- Favicon-->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/plugins/morrisjs/morris.css' %}">
+
+<!-- Custom Css -->
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/color_skins.css' %}">
+{% block head %}
+
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+</head>
+<body class="theme-blue">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="line"></div>
+		<div class="line"></div>
+		<div class="line"></div>
+        <p>Please wait...</p>
+        <div class="m-t-30"><img src="assets/images/logo.svg" width="48" height="48" alt="WTIOT"></div>
+    </div>
+</div>
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div><!-- Search  -->
+<div class="search-bar">
+    <div class="search-icon"> <i class="material-icons">search</i> </div>
+    <input type="text" placeholder="Explore WTIOT...">
+    <div class="close-search"> <i class="material-icons">close</i> </div>
+</div>
+
+<!-- Top Bar -->
+<nav class="navbar">
+    <div class="col-12">
+        <div class="navbar-header">
+            <a href="javascript:void(0);" class="bars"></a>
+            <a class="navbar-brand" href="index.html">WTIOT</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="d-none d-md-inline-block">
+              <a href="javascript:void(0);" class="js-search" data-close="true">
+                <i class="zmdi zmdi-search"></i>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'logout' %}" class="mega-menu" data-close="true">
+                <i class="zmdi zmdi-power"></i>
+              </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+    <!-- User Info -->
+    <div class="user-info">
+        <div class="info-container">
+            <div class="name" data-toggle="dropdown">{{request.user.username}}</div>
+            <div class="btn-group user-helper-dropdown">
+                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"> keyboard_arrow_down </i>
+                <ul class="dropdown-menu slideUp">
+                    <li><a href="profile.html"><i class="material-icons">person</i>Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Sign Out</a></li>
+                </ul>
+            </div>
+            <div class="email">{{request.user.email}}</div>
+        </div>
+    </div>
+    <!-- #User Info -->
+    <!-- Menu -->
+    <div class="menu">
+        <ul class="list">
+            <li class="header">MAIN NAVIGATION</li>
+            <li><a href="{% url 'index' %}"><i class="zmdi zmdi-home"></i><span>IoT Dashboard</span> </a></li>
+            <li><a href="{% url 'addDevice' %}"><i class="zmdi zmdi-devices"></i><span>Add IOT Device</span> </a></li>
+        </ul>
+    </div>
+    <!-- #Menu -->
+</aside>
+
+<!-- ======= Section ======= -->
+{% block body %}
+
+{% endblock %}
+<!-- End Section -->
+<!-- Jquery Core Js -->
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script>
+
+<script src="{% static 'assets/bundles/sparkline.bundle.js' %}"></script>
+<script src="{% static 'assets/plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+<script src="{% static 'assets/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'assets/plugins/morrisjs/morris.js' %}"></script> <!-- Morris Plugin Js -->
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/js/pages/iot.js' %}"></script>
+{% block script %}
+
+{% endblock %}
+</body>
+</html>
