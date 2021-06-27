@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    # 'location_field.apps.DefaultConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +76,7 @@ WSGI_APPLICATION = 'WTIOT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -134,3 +136,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/index'
 LOGOUT_REDIRECT_URL = '/index'
+
+# LOCATION_FIELD = {
+#     'provider.mapbox.access_token':
+#     'pk.eyJ1IjoiMnlhZGF2cmFqbmVlc2giLCJhIjoiY2txZGNnbHZyMDN4ajJ2c2N2djZ6dWdoYiJ9.l1D0XfGXiTmNxjJ5AQmdtQ',
+#     'provider.mapbox.max_zoom': 18,
+#     'provider.mapbox.id': 'mapbox.streets',
+# }
