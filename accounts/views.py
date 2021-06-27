@@ -1,5 +1,8 @@
+from msilib.schema import ListView
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -48,7 +51,7 @@ def login_view(request):
             login(request, user)
             if request.user.is_superuser:
                 messages.success(request, "Sign in Successful.")
-                return redirect('/dashboard')
+                return redirect('/index')
             messages.success(request, "Sign in Successful.")
             return redirect("/index")
 
@@ -67,7 +70,7 @@ def index(request):
     portfolio_list = IOTDevice.objects.all().order_by('-created_date')
     print(portfolio_list)
     context = {
-        "portfolio": portfolio_list,
+        "portfolios": portfolio_list,
     }
     return render(request, "index.html", context)
 
@@ -77,8 +80,26 @@ def addDevice(request):
     if request.method == "POST":
         device_name = request.POST.get("device_name")
         registration_number = request.POST.get("registration_number")
-        IOTRecord = IOTDevice.objects.create(device_name=device_name, registration_number=registration_number)
+        city = request.POST.get("city")
+        IOTRecord = IOTDevice.objects.create(device_name=device_name, city=city,
+                                             registration_number=registration_number)
         print('Successfully Created')
         IOTRecord.save()
         return HttpResponseRedirect(reverse('addDevice'))
     return render(request, "device-upload.html")
+
+
+def search(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        try:
+            status = IOTDevice.objects.filter(
+                Q(device_name__icontains=query) | Q(city__icontains=query) | Q(registration_number__icontains=query))
+        except:
+            return render(request, "search.html", {'books': status})
+        context = {
+            'all_search_results': status,
+        }
+        return render(request, "search.html", context)
+    else:
+        return render(request, "search.html", context='Not Found')

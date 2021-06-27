@@ -1,0 +1,60 @@
+﻿{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Search {% endblock %}
+
+
+{% block body %}
+
+<!-- Main Content -->
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>Dashboard
+                <small class="text-muted">Welcome to WTIOT Application</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> WTIOT</a></li>
+                    <li class="breadcrumb-item active">Iot Dashboard</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="body">
+                        <form action="{% url 'search' %}" method="get">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input name="q" type="text" class="form-control" placeholder="Search...">
+                                </div>
+                            </div>
+                            <button class="btn btn-raised btn-info float-right" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            {% for portfolio in all_search_results %}
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card appliances-grp ng-star-inserted">
+                    <div class="body clearfix">
+                        <div class="content">
+                            <h6>Device Name <span class="text-success">{{ portfolio.device_name }}</span></h6>
+                            <p class="ng-star-inserted">City <span class="text-warning">{{ portfolio.city }}</span></p>
+                            <p class="ng-star-inserted">Registration Number <span class="text-warning">{{ portfolio.registration_number }}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

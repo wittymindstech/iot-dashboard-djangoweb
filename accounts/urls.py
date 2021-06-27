@@ -6,7 +6,10 @@ from django.conf import settings
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
+    path('', views.login_view, name='login'),
     path('index/', views.index, name='index'),
+    # path('search/', views.SearchResultsView.as_view(), name='search'),
+    path('search/', views.search, name='search'),
     path('addIOTDevice/', views.addDevice, name='addDevice'),
     path('login/', views.login_view, name='login'),
     path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
