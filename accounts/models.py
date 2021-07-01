@@ -1,11 +1,8 @@
 from django.contrib.auth.models import User
-# from django.contrib.gis.geos import Point
 from django.db import models
 
 
 # Create your models here.
-# from location_field.forms.plain import PlainLocationField
-# from location_field.forms.spatial import LocationField
 
 
 class Profile(models.Model):
@@ -21,12 +18,18 @@ class Profile(models.Model):
         return f'{self.user.first_name}'
 
 
+class Device(models.Model):
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    icon = models.ImageField(upload_to='icons')
+
+    def __str__(self):
+        return self.name
+
+
 class IOTDevice(models.Model):
     device_id = models.AutoField(primary_key=True)
     device_name = models.CharField(max_length=100)
     city = models.CharField(max_length=255)
-    # location = LocationField(based_fields=['city'], zoom=7, default=Point(1.0, 1.0))
-    # location_name = PlainLocationField(based_fields=['city'], zoom=7)
     registration_number = models.CharField(max_length=100)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,
                                    related_name="project_created_by")
