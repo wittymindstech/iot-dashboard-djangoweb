@@ -11,7 +11,7 @@ iot-dashboard
 ![](iot_dashboard2.png)
 
 
-![](iot_dashboard3.png)
+![](iot_dashboard4.png)
 
 
 
