@@ -6,9 +6,12 @@ iot-dashboard
 ![](iot_dashboard1.png)
 
 
-# Login and Registration
+# Device Search
+
 
 ![](iot_dashboard2.png)
+
+# Login and Registration
 
 
 ![](iot_dashboard4.png)
