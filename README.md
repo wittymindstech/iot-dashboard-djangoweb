@@ -6,7 +6,7 @@ iot-dashboard
 ![](iot_dashboard1.png)
 
 
-#Login and Registration
+# Login and Registration
 
 ![](iot_dashboard2.png)
 
